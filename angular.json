@@ -1,0 +1,153 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "JubileduApp": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/JubileduApp",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets/css/scss-files.txt",
+              "src/assets/css/main.css",
+              "src/assets/css/style.css",
+              "src/assets/css/util.css",
+              "src/assets",
+              "src/assets/lib/font-awesome/fonts",
+              "src/assets/lib/ionicons/fonts"
+            ],
+            "styles": [
+              "src/styles.css",
+              "src/assets/css/style.css",
+              "src/assets/lib/animate/animate.min.css",
+              "src/assets/lib/font-awesome/css/font-awesome.min.css",
+              "src/assets/lib/ionicons/css/ionicons.min.css",
+              "src/assets/lib/lightbox/css/lightbox.min.css",
+              "src/assets/lib/owlcarousel/assets/owl.carousel.min.css",
+              "src/assets/lib/owlcarousel/assets/owl.theme.default.min.css",
+              "src/assets/lib/owlcarousel/assets/owl.theme.green.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/popper.min.js",
+              "src/assets/js/main.js",
+              "src/assets/lib/counterup/counterup.min.js",
+              "src/assets/lib/easing/easing.min.js",
+              "src/assets/lib/isotope/isotope.pkgd.min.js",
+              "src/assets/lib/lightbox/js/lightbox.min.js",
+              "src/assets/lib/mobile-nav/mobile-nav.js",
+              "src/assets/lib/waypoints/waypoints.min.js",
+              "src/assets/lib/wow/wow.min.js",
+              "src/assets/lib/owlcarousel/owl.carousel.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "JubileduApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "JubileduApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "JubileduApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "JubileduApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "JubileduApp:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "JubileduApp"
+}
