@@ -8,12 +8,14 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {LoginComponent} from './usuarios/login.component';
 import {RegistroComponent} from './registro/registro.component';
+import {CalculadoraComponent} from './calculadora/calculadora.component';
 
 // Array de Rutas
 const appRoutes: Routes = [
   {path: '', component: IndexComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'registro', component: RegistroComponent}
+  {path: 'registro', component: RegistroComponent},
+  {path: 'calculadora', component: CalculadoraComponent}
 ];
 
 // Exportar el modulo del router

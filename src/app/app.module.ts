@@ -8,6 +8,8 @@ import {IndexComponent} from './index/index.component';
 import {FooterComponent} from './footer/footer.component';
 import {LoginComponent} from './usuarios/login.component';
 import { RegistroComponent } from './registro/registro.component';
+import { CalculadoraComponent } from './calculadora/calculadora.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { RegistroComponent } from './registro/registro.component';
     IndexComponent,
     FooterComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    CalculadoraComponent
   ],
   imports: [
     BrowserModule,
-    routing
+    routing,
+    FormsModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
