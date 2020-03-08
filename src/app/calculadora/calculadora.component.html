@@ -1,0 +1,104 @@
+<!--<ul class="alert alert-danger" *ngIf="errores?.length>0">-->
+<!--  <li *ngFor="let err of errores">-->
+<!--    {{err}}-->
+<!--  </li>-->
+<!--</ul>-->
+<div class="container calculadora">
+  <div class="card bg-light text-dark">
+    <div class="card-header">Calcula lo que te hace falta para tu pension</div>
+    <div class="card-body">
+      <form #formCalculadora="ngForm" (ngSubmit)="onSubmit();mostrarResultado()">
+        <div class="form-group row mx-5">
+          <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" name="nombre" id="nombre" #nombre="ngModel"
+                   [(ngModel)]="cotizante.nombre"
+                   required>
+          </div>
+        </div>
+
+        <div class="form-group row mx-5">
+          <label for="date" class="col-form-label col-sm-2">Edad (Años Cumplidos)</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" name="date" id="date" #edad="ngModel"
+                   [(ngModel)]="cotizante.edad" required>
+          </div>
+        </div>
+
+
+        <div class="form-group row mx-5">
+          <label class="col-form-label col-sm-2">Genero</label>
+          <div class="col-sm-6">
+            Hombre <input type="radio" name="genero" value="H" #genero="ngModel"
+                          [(ngModel)]="cotizante.genero"> &nbsp;&nbsp;&nbsp;
+            <!--genera espacios entre los elementos de manera horizontal -->
+            Mujer <input type="radio" name="genero" value="M" #genero="ngModel"
+                         [(ngModel)]="cotizante.genero">
+
+          </div>
+        </div>
+
+        <div class="form-group row mx-5">
+          <label class="col-form-label col-sm-2">Regimen</label>
+          <div class="col-sm-6">
+            Prima Media <input type="radio" name="regimen" value="PM" #regimen="ngModel"
+                               [(ngModel)]="cotizante.regimen"> &nbsp;&nbsp;&nbsp;
+            <!--genera espacios entre los elementos de manera horizontal -->
+            Ahorro Individual <input type="radio" name="regimen" value="AI" #regimen="ngModel"
+                                     [(ngModel)]="cotizante.regimen">
+
+          </div>
+        </div>
+
+        <div class="form-group row mx-5">
+          <label for="semanas" class="col-form-label col-sm-2">Semanas Cotizadas</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" name="semanas" id="semanas" required="true" #semanas="ngModel"
+                   [(ngModel)]="cotizante.semanas" required>
+          </div>
+        </div>
+
+
+        <div class="form-group row mx-5">
+          <label for="salario" class="col-form-label col-sm-2">Salario Promedio</label>
+          <div class="col-sm-6">
+            <input type="number" class="form-control" name="salario" id="salario" required="true" placeholder="$"
+                   #salario="ngModel"
+                   [(ngModel)]="cotizante.salario" required>
+          </div>
+        </div>
+
+
+        <div class="form-group row mx-5">
+          <div class="col-sm-6">
+            <input type="submit" class="btn btn-primary" value="Calcular" [disabled]="!formCalculadora.form.valid">&nbsp;&nbsp;
+            <input type="reset" class="btn btn-dark" value="Limpiar" (click)="ocultarResultado()">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="card bg-light text-dark mt-3 mb-3" *ngIf="mostrarPrimaMedia">
+    <div class="card-header">Escogiste la jubilacion por regimen de prima media</div>
+    <div class="card-body">
+      <h3 class="text-center">Hola {{cotizante.nombre}}</h3>
+      <p>El requisito de edad para pensionarse en Colombia es de 62 años para hombres y 57 años para mujeres</p>
+      <li class="list-group-item" *ngIf="anios>0">Te faltan {{anios}} años</li>
+      <p>El requisito de tiempo para pensionarse en Colombia es de 1300 semanas cotizadas</p>
+      <li class="list-group-item" *ngIf="tiempo>0">Te faltan {{tiempo}} semanas</li>
+    </div>
+  </div>
+
+  <div class="card bg-light text-dark mt-3 mb-3" *ngIf="mostrarAhorroIndividual">
+    <div class="card-header">Escogiste la jubilacion por regimen de ahorro individual</div>
+    <div class="card-body">
+      <p>El capital acumulado debe ser suficiente para financiar una pensión superior al 110% del salario mínimo según
+        lo dispone el artículo 64 de la ley 100 de 1.993.</p>
+    </div>
+  </div>
+
+
+</div>
+
+
