@@ -17,4 +17,4 @@ insert into clientes (id, cedula, nombre, apellido, email, password, fecha, tele
 insert into clientes (id, cedula, nombre, apellido, email, password, fecha, telefono, genero, semanas, salario) values (17, '84-640-5656', 'Gifford', 'Zmitrovich', 'gzmitrovichg@creativecommons.org', '7P24pCpMDc', '1999-12-21', '819-183-7504', 'M', 17, 3480945);
 insert into clientes (id, cedula, nombre, apellido, email, password, fecha, telefono, genero, semanas, salario) values (18, '26-474-3251', 'Thedric', 'Tozer', 'ttozerh@vkontakte.ru', 'zrpxLWD', '1984-07-04', '961-585-1918', 'M', 325, 2736329);
 insert into clientes (id, cedula, nombre, apellido, email, password, fecha, telefono, genero, semanas, salario) values (19, '32-881-4208', 'Early', 'Shippam', 'eshippami@t.co', 'Q523FUhCT', '1998-05-22', '817-249-9118', 'M', 1108, 10738396);
-insert into clientes (id, cedula, nombre, apellido, email, password, fecha, telefono, genero, semanas, salario) values (20, '12-954-2606', 'Christy', 'Rousby', 'crousbyj@google.co.jp', 'R4GGZSV', '1984-03-07', '954-748-9879', 'M', 1052, 5519243);
+
