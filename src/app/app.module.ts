@@ -7,9 +7,10 @@ import {HeaderComponent} from './header/header.component';
 import {IndexComponent} from './index/index.component';
 import {FooterComponent} from './footer/footer.component';
 import {LoginComponent} from './usuarios/login.component';
-import { RegistroComponent } from './registro/registro.component';
-import { CalculadoraComponent } from './calculadora/calculadora.component';
+import {RegistroComponent} from './registro/registro.component';
+import {CalculadoraComponent} from './calculadora/calculadora.component';
 import {FormsModule} from '@angular/forms';
+import {ClientesComponent} from './clientes/clientes.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {FormsModule} from '@angular/forms';
     FooterComponent,
     LoginComponent,
     RegistroComponent,
-    CalculadoraComponent
+    CalculadoraComponent,
+    ClientesComponent
   ],
   imports: [
     BrowserModule,

@@ -186,7 +186,8 @@
 
     _createClass(MutationObserver, [{
       key: 'observe',
-      value: function observe() {}
+      value: function observe() {
+      }
     }]);
 
     return MutationObserver;
@@ -407,15 +408,15 @@
         box.style.visibility = hidden ? 'hidden' : 'visible';
 
         if (duration) {
-          this.vendorSet(box.style, { animationDuration: duration });
+          this.vendorSet(box.style, {animationDuration: duration});
         }
         if (delay) {
-          this.vendorSet(box.style, { animationDelay: delay });
+          this.vendorSet(box.style, {animationDelay: delay});
         }
         if (iteration) {
-          this.vendorSet(box.style, { animationIterationCount: iteration });
+          this.vendorSet(box.style, {animationIterationCount: iteration});
         }
-        this.vendorSet(box.style, { animationName: hidden ? 'none' : this.cachedAnimationName(box) });
+        this.vendorSet(box.style, {animationName: hidden ? 'none' : this.cachedAnimationName(box)});
 
         return box;
       }
