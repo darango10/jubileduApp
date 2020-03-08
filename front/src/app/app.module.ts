@@ -11,6 +11,7 @@ import {RegistroComponent} from './registro/registro.component';
 import {CalculadoraComponent} from './calculadora/calculadora.component';
 import {FormsModule} from '@angular/forms';
 import {ClientesComponent} from './clientes/clientes.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {ClientesComponent} from './clientes/clientes.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     routing,
     FormsModule
   ],
