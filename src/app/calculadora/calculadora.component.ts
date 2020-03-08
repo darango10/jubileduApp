@@ -22,7 +22,7 @@ export class CalculadoraComponent implements OnInit {
 
   onSubmit() {
     console.log(this.cotizante);
-    if (this.cotizante.genero === 'H') {
+    if (this.cotizante.genero === 'M') {
       this.anios = 62 - this.cotizante.edad;
     } else {
       this.anios = 57 - this.cotizante.edad;
