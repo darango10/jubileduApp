@@ -1,6 +1,6 @@
 {
-  "name": "jubiledu-app",
-  "version": "0.0.0",
+  "name": "jubiledu",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -47,5 +47,20 @@
     "ts-node": "~8.3.0",
     "tslint": "~5.18.0",
     "typescript": "~3.7.5"
-  }
+  },
+  "description": "This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darango10/jubileduApp.git"
+  },
+  "keywords": [
+    "\"ppi\""
+  ],
+  "author": "Daniel Arango",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/darango10/jubileduApp/issues"
+  },
+  "homepage": "https://github.com/darango10/jubileduApp#readme"
 }
