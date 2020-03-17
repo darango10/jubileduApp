@@ -7,7 +7,7 @@
   <div class="card bg-light text-dark">
     <div class="card-header">{{titulo}}</div>
     <div class="card-body">
-      <form #formRegistro="ngForm" (ngSubmit)="create()">
+      <form #formRegistro="ngForm">
 
         <div class="form-group row mx-5">
           <label for="cedula" class="col-form-label col-sm-2">Cedula</label>
@@ -94,7 +94,16 @@
 
         <div class="form-group row mx-5">
           <div class="col-sm-6">
-            <button class="btn btn-primary" role="button" [disabled]="!formRegistro.valid">Registrar</button>
+            <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!cliente.id else elseBlock"
+                    [disabled]="!formRegistro.valid">
+              Registrar
+            </button>
+
+            <ng-template #elseBlock>
+              <button class="btn btn-primary" role="button" (click)="update()" [disabled]="!formRegistro.valid">
+                Editar
+              </button>
+            </ng-template>
           </div>
         </div>
 

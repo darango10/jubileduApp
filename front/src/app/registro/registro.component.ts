@@ -40,4 +40,13 @@ export class RegistroComponent implements OnInit {
       }
     );
   }
+
+  update() {
+    this.clienteService.update(this.cliente).subscribe(
+      cliente => {
+        this.router.navigate(['/clientes']);
+        swal.fire('Usuario Actualizado', `${cliente.nombre} actualizado con exito`, 'success');
+      }
+    );
+  }
 }
