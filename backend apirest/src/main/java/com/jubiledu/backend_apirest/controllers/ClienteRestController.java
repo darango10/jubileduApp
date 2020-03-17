@@ -21,7 +21,7 @@ public class ClienteRestController {
         return clienteService.findAll();
     }
 
-    @GetMapping("/clientes/{id}")
+    @GetMapping("/clientes/registro/{id}")
     public Cliente show(@PathVariable Long id) {
         return clienteService.findById(id);
     }
@@ -32,7 +32,7 @@ public class ClienteRestController {
         return clienteService.save(cliente);
     }
 
-    @PutMapping("/clientes/{id}")
+    @PutMapping("/clientes/registro/{id}")
     @ResponseStatus(HttpStatus.CREATED)
     public Cliente update(@RequestBody Cliente cliente, @PathVariable Long id) {
         Cliente clienteActual = clienteService.findById(id);

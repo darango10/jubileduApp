@@ -17,7 +17,8 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'calculadora', component: CalculadoraComponent},
-  {path: 'clientes', component: ClientesComponent}
+  {path: 'clientes', component: ClientesComponent},
+  {path: 'clientes/registro/:id', component: RegistroComponent}
 ];
 
 // Exportar el modulo del router
