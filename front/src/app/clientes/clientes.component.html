@@ -6,51 +6,37 @@
 
       <div *ngIf="clientes?.length==0" class="alert alert-info">No hay registros en la base de datos</div>
 
-      <table class="table table-bordered table-striped" *ngIf="clientes?.length>0">
-        <thead>
-        <tr>
-          <th>Editar</th>
-          <th>Eliminar</th>
-          <th>Cedula</th>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Email</th>
-          <th>Password</th>
-          <th>Fecha</th>
-          <th>Telefono</th>
-          <th>Genero</th>
-          <th>Semanas</th>
-          <th>Salario</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let cliente of clientes">
+      <p-table #dt [columns]="cols" [value]="clientes" [paginator]="true" [rows]="5" [resizableColumns]="true">
+        <ng-template pTemplate="caption">
+          <div style="text-align: right">
+            <i class="pi pi-search" style="margin:4px 4px 0 0"></i>
+            <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </div>
+        </ng-template>
 
-          <td>
-            <button type="button" name="editar" [routerLink]="['registro',cliente.id]" class="btn btn-primary">Editar
-            </button>
-          </td>
-          <td>
-            <button type="button" name="eliminar" (click)="delete(cliente)" class="btn btn-danger">Eliminar
-            </button>
-          </td>
-          <td>{{cliente.cedula}}</td>
-          <td>{{cliente.nombre}}</td>
-          <td>{{cliente.apellido}}</td>
-          <td>{{cliente.email}}</td>
-          <td>{{cliente.password}}</td>
-          <td>{{cliente.fecha}}</td>
-          <td>{{cliente.telefono}}</td>
-          <td>{{cliente.genero}}</td>
-          <td>{{cliente.semanas}}</td>
-          <td>{{cliente.salario}}</td>
-        </tr>
-        </tbody>
-      </table>
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn>
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            </th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
 
     </div>
   </div>
 </div>
+
+
+
 
 
 

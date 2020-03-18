@@ -12,6 +12,7 @@ import {CalculadoraComponent} from './calculadora/calculadora.component';
 import {FormsModule} from '@angular/forms';
 import {ClientesComponent} from './clientes/clientes.component';
 import {HttpClientModule} from '@angular/common/http';
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     HttpClientModule,
     routing,
-    FormsModule
+    FormsModule,
+    TableModule
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]
