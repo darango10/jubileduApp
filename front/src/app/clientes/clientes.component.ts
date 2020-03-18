@@ -15,6 +15,7 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[];
   cols: any[];
   dt: any;
+  id: number;
 
 
   constructor(private clienteService: ClienteService) {
@@ -76,6 +77,5 @@ export class ClientesComponent implements OnInit {
       }
     });
   }
-
 
 }
