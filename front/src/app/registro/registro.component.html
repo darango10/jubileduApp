@@ -12,7 +12,7 @@
         <div class="form-group row mx-5">
           <label for="cedula" class="col-form-label col-sm-2">Cedula</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="cliente.cedula" name="cedula" id="cedula" pattern="\d*"
+            <input type="text" class="form-control" [(ngModel)]="cliente.cedula" name="cedula" id="cedula" pattern="^[0-9]*$"
                    required="true" #cedula="ngModel">
             <div class="alert alert-danger" *ngIf="cedula.invalid && (cedula.dirty || cedula.touched)">
               <div *ngIf="cedula.errors.required">
@@ -115,9 +115,9 @@
         <div class="form-group row mx-5">
           <label class="col-form-label col-sm-2">Genero</label>
           <div class="col-sm-6">
-            Hombre <input type="radio" [(ngModel)]="cliente.genero" name="genero" value="M"> &nbsp;&nbsp;&nbsp;
+            Hombre <input type="radio" [(ngModel)]="cliente.genero" name="genero" value="M" required="true"> &nbsp;&nbsp;&nbsp;
             <!--genera espacios entre los elementos de manera horizontal -->
-            Mujer <input type="radio" [(ngModel)]="cliente.genero" name="genero" value="F">
+            Mujer <input type="radio" [(ngModel)]="cliente.genero" name="genero" value="F" required="true">
 
           </div>
         </div>
