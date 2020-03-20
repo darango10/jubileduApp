@@ -12,8 +12,16 @@
         <div class="form-group row mx-5">
           <label for="cedula" class="col-form-label col-sm-2">Cedula</label>
           <div class="col-sm-6">
-            <input type="text" class="form-control" [(ngModel)]="cliente.cedula" name="cedula" id="cedula"
-                   required="true">
+            <input type="text" class="form-control" [(ngModel)]="cliente.cedula" name="cedula" id="cedula" pattern="\d*"
+                   required="true" #cedula="ngModel">
+            <div class="alert alert-danger" *ngIf="cedula.invalid && (cedula.dirty || cedula.touched)">
+              <div *ngIf="cedula.errors.required">
+                Cedula es requerido
+              </div>
+              <div *ngIf="cedula.errors.pattern">
+                Ingresa un numero de cedula valido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -21,7 +29,12 @@
           <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" id="nombre"
-                   required="true">
+                   required="true" #nombre="ngModel">
+            <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <div *ngIf="nombre.errors.required">
+                Nombre es requerido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -29,7 +42,12 @@
           <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
           <div class="col-sm-6">
             <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido" id="apellido"
-                   required="true">
+                   required="true" #apellido="ngModel">
+            <div class="alert alert-danger" *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+              <div *ngIf="apellido.errors.required">
+                Apellido es requerido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -37,7 +55,15 @@
           <label for="email" class="col-form-label col-sm-2">Email</label>
           <div class="col-sm-6">
             <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" id="email"
-                   required="true">
+                   required="true" email #email="ngModel">
+            <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+              <div *ngIf="email.errors.required">
+                Email es requerido
+              </div>
+              <div *ngIf="email.errors.email">
+                Email debe tener un formato valido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -45,14 +71,28 @@
           <label for="password" class="col-form-label col-sm-2">Password</label>
           <div class="col-sm-6">
             <input type="password" class="form-control" [(ngModel)]="cliente.password" name="password" id="password"
-                   required="true">
+                   required="true" minlength="6" #password="ngModel">
+            <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+              <div *ngIf="password.errors.required">
+                Password es requerido
+              </div>
+              <div *ngIf="password.errors.minlength">
+                Password debe tener minimo 6 caracteres
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="form-group row mx-5">
           <label for="date" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
           <div class="col-sm-6">
-            <input type="date" class="form-control" [(ngModel)]="cliente.fecha" name="date" id="date" required="true">
+            <input type="date" class="form-control" [(ngModel)]="cliente.fecha" name="date" id="date" required="true"
+                   #fecha="ngModel">
+            <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+              <div *ngIf="fecha.errors.required">
+                Fecha de Nacimiento es requerida
+              </div>
+            </div>
           </div>
         </div>
 
@@ -60,7 +100,15 @@
           <label for="telefono" class="col-form-label col-sm-2">Telefono</label>
           <div class="col-sm-6">
             <input type="tel" class="form-control" [(ngModel)]="cliente.telefono" name="telefono" id="telefono"
-                   required="true">
+                   required="true" pattern="\d*" #tel="ngModel">
+            <div class="alert alert-danger" *ngIf="tel.invalid && (tel.dirty || tel.touched)">
+              <div *ngIf="tel.errors.required">
+                Telefono es requerido
+              </div>
+              <div *ngIf="tel.errors.pattern">
+                Ingresa un numero de telefono valido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -78,7 +126,12 @@
           <label for="semanas" class="col-form-label col-sm-2">Semanas Cotizadas</label>
           <div class="col-sm-6">
             <input type="number" class="form-control" [(ngModel)]="cliente.semanas" name="semanas" id="semanas"
-                   required="true">
+                   required="true" #semanas="ngModel">
+            <div class="alert alert-danger" *ngIf="semanas.invalid && (semanas.dirty || semanas.touched)">
+              <div *ngIf="semanas.errors.required">
+                Ingresa un numero de semanas valido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -87,7 +140,12 @@
           <label for="salario" class="col-form-label col-sm-2">Salario</label>
           <div class="col-sm-6">
             <input type="number" class="form-control" [(ngModel)]="cliente.salario" name="salario" id="salario"
-                   required="true" placeholder="$">
+                   required="true" placeholder="$" #salario="ngModel">
+            <div class="alert alert-danger" *ngIf="salario.invalid && (salario.dirty || salario.touched)">
+              <div *ngIf="salario.errors.required">
+                Ingresa un salario valido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -102,6 +160,9 @@
             <ng-template #elseBlock>
               <button class="btn btn-primary" role="button" (click)="update()" [disabled]="!formRegistro.valid">
                 Editar
+              </button>
+
+              <button class="btn btn-warning pi pi-arrow-circle-left ml-5" role="button" routerLink="/clientes">
               </button>
             </ng-template>
           </div>

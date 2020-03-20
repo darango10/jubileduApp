@@ -34,18 +34,18 @@ export class RegistroComponent implements OnInit {
   }
 
   create() {
-    this.clienteService.create(this.cliente).subscribe(cliente => {
+    this.clienteService.create(this.cliente).subscribe(json => {
         this.router.navigate(['/clientes']);
-        swal.fire('Usuario Registrado', `${cliente.nombre} registrado con exito`, 'success');
+        swal.fire('Usuario Registrado', `${json.cliente.nombre} registrado con exito`, 'success');
       }
     );
   }
 
   update() {
     this.clienteService.update(this.cliente).subscribe(
-      cliente => {
+      json => {
         this.router.navigate(['/clientes']);
-        swal.fire('Usuario Actualizado', `${cliente.nombre} actualizado con exito`, 'success');
+        swal.fire('Usuario Actualizado', `${json.cliente.nombre} actualizado con exito`, 'success');
       }
     );
   }
