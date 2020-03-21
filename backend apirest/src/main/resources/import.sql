@@ -38,3 +38,14 @@ insert into clientes (cedula, nombre, apellido, email, password, fecha, telefono
 insert into clientes (cedula, nombre, apellido, email, password, fecha, telefono, genero, semanas, salario) values ('8902925498', 'Fax', 'Keems', 'fkeems11@who.int', 'J41KvKIDv', '1940-07-01', '9855892204', 'M', 1116, 6790922);
 insert into clientes (cedula, nombre, apellido, email, password, fecha, telefono, genero, semanas, salario) values ('7091663144', 'Winifield', 'Joist', 'wjoist12@foxnews.com', 'DWFiFxcoz2', '1972-01-20', '8189107796', 'M', 925, 3897005);
 insert into clientes (cedula, nombre, apellido, email, password, fecha, telefono, genero, semanas, salario) values ('0054054176', 'Diena', 'Scotland', 'dscotland13@free.fr', '8yxI4L09s', '1952-10-28', '1596459780', 'F', 130, 10642730);
+
+
+insert into usuarios(username,password, enabled) values ('daniel','$2a$10$AcQtZ8yXpVxB/P3jRju58ONMJGD23uAH5ENjEMul/plUJlFcKWpee',1);
+insert into usuarios(username,password, enabled) values ('admin','$2a$10$JHn.6S9Xs4liWn8/T54nw.nPh.huSp0Dl/IXGN03wG.BQsAWyGfsi',1);
+
+insert into roles(nombre) values ('ROLE_USER');
+insert into roles(nombre) values ('ROLE_ADMIN');
+
+insert into usuarios_roles(usuario_id, role_id) values (1,1);
+insert into usuarios_roles(usuario_id, role_id) values (2,2);
+insert into usuarios_roles(usuario_id, role_id) values (2,1);

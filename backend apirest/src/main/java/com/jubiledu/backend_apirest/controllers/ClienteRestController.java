@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +26,13 @@ public class ClienteRestController {
     @Autowired
     private ClienteService clienteService;
 
+//    @Secured({"ROLE_ADMIN"})
     @GetMapping("/clientes")
     public List<Cliente> index() {
         return clienteService.findAll();
     }
 
+    @Secured({"ROLE_ADMIN"})
     @GetMapping("/clientes/registro/{id}")
     public ResponseEntity<?> show(@PathVariable Long id) {
         Cliente cliente = null;
@@ -86,6 +89,7 @@ public class ClienteRestController {
         return new ResponseEntity<Map>(response, HttpStatus.CREATED);
     }
 
+    @Secured({"ROLE_ADMIN"})
     @PutMapping("/clientes/registro/{id}")
     public ResponseEntity<?> update(@Valid @RequestBody Cliente cliente, BindingResult result, @PathVariable Long id) {
 
@@ -136,6 +140,7 @@ public class ClienteRestController {
 
     }
 
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("clientes/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
 
