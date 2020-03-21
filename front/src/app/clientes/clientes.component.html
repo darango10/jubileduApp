@@ -6,7 +6,7 @@
 
       <div *ngIf="clientes?.length==0" class="alert alert-info">No hay registros en la base de datos</div>
 
-      <p-table #dt [columns]="cols" [value]="clientes" [paginator]="true" [rows]="5" [resizableColumns]="true">
+      <p-table #dt [columns]="cols" [value]="clientes" [paginator]="true" [rows]="10" [resizableColumns]="true">
         <ng-template pTemplate="caption">
           <div style="text-align: right">
             <i class="pi pi-search btn btn-primary" style="margin:0 4px 0 0"></i>

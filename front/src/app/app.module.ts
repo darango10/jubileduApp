@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import {routing, appRoutingProviders} from './app.routing';
 
 import {AppComponent} from './app.component';
@@ -13,6 +13,13 @@ import {FormsModule} from '@angular/forms';
 import {ClientesComponent} from './clientes/clientes.component';
 import {HttpClientModule} from '@angular/common/http';
 import {TableModule} from 'primeng/table';
+import {registerLocaleData} from '@angular/common';
+import localeES from '@angular/common/locales/es';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatMomentDateModule} from '@angular/material-moment-adapter';
+
+registerLocaleData(localeES, 'es');
 
 @NgModule({
   declarations: [
@@ -30,9 +37,13 @@ import {TableModule} from 'primeng/table';
     HttpClientModule,
     routing,
     FormsModule,
-    TableModule
+    TableModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders,
+    {provide: LOCALE_ID, useValue: 'es'}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

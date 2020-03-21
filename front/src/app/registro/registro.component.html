@@ -86,8 +86,12 @@
         <div class="form-group row mx-5">
           <label for="date" class="col-form-label col-sm-2">Fecha de Nacimiento</label>
           <div class="col-sm-6">
-            <input type="date" class="form-control" [(ngModel)]="cliente.fecha" name="date" id="date" required="true"
-                   #fecha="ngModel">
+
+            <input [matDatepicker]="myDatepicker" class="form-control" [(ngModel)]="cliente.fecha" name="date" id="date"
+                   required="true"
+                   #fecha="ngModel" style="display: inline;width: 416px">
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #myDatepicker></mat-datepicker>
             <div class="alert alert-danger" *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
               <div *ngIf="fecha.errors.required">
                 Fecha de Nacimiento es requerida

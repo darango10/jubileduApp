@@ -13,6 +13,7 @@ export class RegistroComponent implements OnInit {
   titulo = 'Sign Up';
   cliente: Cliente = new Cliente();
   formRegistro: any;
+  private errores: string[];
 
   constructor(private clienteService: ClienteService,
               private router: Router,
@@ -37,6 +38,9 @@ export class RegistroComponent implements OnInit {
     this.clienteService.create(this.cliente).subscribe(json => {
         this.router.navigate(['/clientes']);
         swal.fire('Usuario Registrado', `${json.cliente.nombre} registrado con exito`, 'success');
+      },
+      err => {
+        this.errores = err.error.errors as string[];
       }
     );
   }
@@ -46,6 +50,9 @@ export class RegistroComponent implements OnInit {
       json => {
         this.router.navigate(['/clientes']);
         swal.fire('Usuario Actualizado', `${json.cliente.nombre} actualizado con exito`, 'success');
+      },
+      err => {
+        this.errores = err.error.errors as string[];
       }
     );
   }

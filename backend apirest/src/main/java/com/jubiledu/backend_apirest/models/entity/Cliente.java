@@ -1,6 +1,8 @@
 package com.jubiledu.backend_apirest.models.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,7 +22,10 @@ public class Cliente implements Serializable {
     private String apellido;
 
     @Column(unique = true)
+    @Email
+    @NotEmpty
     private String email;
+
     private String password;
 
     @Temporal(TemporalType.DATE)
