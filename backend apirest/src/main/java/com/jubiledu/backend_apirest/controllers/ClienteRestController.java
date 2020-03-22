@@ -1,8 +1,10 @@
 package com.jubiledu.backend_apirest.controllers;
 
 import com.jubiledu.backend_apirest.models.entity.Cliente;
+import com.jubiledu.backend_apirest.models.entity.Role;
 import com.jubiledu.backend_apirest.models.entity.Usuario;
 import com.jubiledu.backend_apirest.models.services.ClienteService;
+import com.jubiledu.backend_apirest.models.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,7 @@ public class ClienteRestController {
 
     @Autowired
     private ClienteService clienteService;
+
 
     @Secured({"ROLE_ADMIN"})
     @GetMapping("/clientes")
@@ -58,7 +61,7 @@ public class ClienteRestController {
     @PostMapping("/clientes")
     public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
         Cliente clienteNew = null;
-        Usuario usuarioNew = null
+        Usuario usuarioNew = null;
         Map<String, Object> response = new HashMap<>();
 
         if (result.hasErrors()) {
