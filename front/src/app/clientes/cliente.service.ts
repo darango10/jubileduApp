@@ -15,8 +15,17 @@ export class ClienteService {
   private urlEndpoint = 'http://localhost:8080/api/clientes';
   private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
+
   constructor(private http: HttpClient,
               private router: Router) {
+  }
+
+  private isNoAutorizado(e): boolean {
+    if (e.status === 401 || e.status === 403) {
+      this.router.navigate(['/login']);
+      return true;
+    }
+    return false;
   }
 
   getClientes(): Observable<Cliente[]> {
@@ -41,10 +50,16 @@ export class ClienteService {
   getCliente(id): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.urlEndpoint}/registro/${id}`).pipe(
       catchError(e => {
-        this.router.navigate(['/clientes']);
+
         console.log(e.error.mensaje);
-        Swal.fire('Error al editar', e.error.mensaje, 'error');
-        return throwError(e);
+        Swal.fire('Error al editar', 'Debes estar autenticado', 'error');
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
+
+        if (e.status === 400) {
+          return throwError(e);
+        }
       })
     );
   }
@@ -52,12 +67,16 @@ export class ClienteService {
   update(cliente: Cliente): Observable<any> {
     return this.http.put<any>(`${this.urlEndpoint}/registro/${cliente.id}`, cliente, {headers: this.httpHeaders}).pipe(
       catchError(e => {
+
+        console.log(e.error.mensaje);
+        Swal.fire(e.error.mensaje, 'Debes estar autenticado', 'error');
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
+
         if (e.status === 400) {
           return throwError(e);
         }
-        console.log(e.error.mensaje);
-        Swal.fire(e.error.mensaje, e.error.error, 'error');
-        return throwError(e);
       })
     );
   }
@@ -65,9 +84,17 @@ export class ClienteService {
   delete(id: number): Observable<Cliente> {
     return this.http.delete<Cliente>(`${this.urlEndpoint}/${id}`, {headers: this.httpHeaders}).pipe(
       catchError(e => {
+
         console.log(e.error.mensaje);
-        Swal.fire(e.error.mensaje, e.error.error, 'error');
-        return throwError(e);
+        Swal.fire(e.error.mensaje, 'Debes estar autenticado', 'error');
+
+        if (this.isNoAutorizado(e)) {
+          return throwError(e);
+        }
+
+        if (e.status === 400) {
+          return throwError(e);
+        }
       })
     );
   }

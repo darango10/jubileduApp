@@ -27,11 +27,23 @@
         <li><a href="#intro">Home</a></li>
         <li><a href="#about">Nostros</a></li>
         <li><a href="#services">Servicios</a></li>
-        <li><a routerLink="/clientes" routerLinkActive="true">Clientes</a></li>
-        <li><a routerLink="/calculadora" routerLinkActive="true">Calculadora</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/clientes" routerLinkActive="true">Clientes</a></li>
+        <li *ngIf="authService.isAuthenticated()"><a routerLink="/calculadora" routerLinkActive="true">Calculadora</a>
+        </li>
         <li><a href="#footer">Contactanos</a></li>
-        <li><a routerLink="/login" routerLinkActive="true">Iniciar Sesion<span class="pi pi-sign-in"></span></a></li>
-        <li><a routerLink="/registro" routerLinkActive="true">Registrate</a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/login" routerLinkActive="true">Iniciar Sesion<span
+          class="pi pi-sign-in"></span></a></li>
+        <li *ngIf="!authService.isAuthenticated()"><a routerLink="/registro" routerLinkActive="true">Registrate</a></li>
+        <li *ngIf="authService.isAuthenticated()" class="dropdown">
+          <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+            {{authService.usuario.username}}
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesion</button>
+          </div>
+        </li>
       </ul>
     </nav><!-- .main-nav -->
 
