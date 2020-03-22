@@ -1,6 +1,7 @@
 package com.jubiledu.backend_apirest.models.services;
 
 import com.jubiledu.backend_apirest.models.dao.UsuarioDao;
+import com.jubiledu.backend_apirest.models.entity.Cliente;
 import com.jubiledu.backend_apirest.models.entity.Usuario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -49,4 +50,11 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
     public Usuario findByUsername(String username) {
         return usuarioDao.findByUsername(username);
     }
+
+    @Override
+    @Transactional
+    public Usuario save(Usuario usuario) {
+        return usuarioDao.save(usuario);
+    }
+
 }

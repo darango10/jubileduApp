@@ -27,7 +27,8 @@
         <li><a href="#intro">Home</a></li>
         <li><a href="#about">Nostros</a></li>
         <li><a href="#services">Servicios</a></li>
-        <li *ngIf="authService.isAuthenticated()"><a routerLink="/clientes" routerLinkActive="true">Clientes</a></li>
+        <li *ngIf="authService.hasRole('ROLE_ADMIN')"><a routerLink="/clientes" routerLinkActive="true">Clientes</a>
+        </li>
         <li *ngIf="authService.isAuthenticated()"><a routerLink="/calculadora" routerLinkActive="true">Calculadora</a>
         </li>
         <li><a href="#footer">Contactanos</a></li>

@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Usuario} from './usuario';
 import {Router} from '@angular/router';
-import swal from "sweetalert2";
+import swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -82,9 +82,18 @@ export class AuthService {
     return false;
   }
 
+  hasRole(role: string): boolean {
+    if (this.usuario.roles.includes(role)) {
+      return true;
+    }
+    return false;
+  }
+
   logout() {
     this._token = null;
     this._usuario = null;
     sessionStorage.clear();
   }
+
+
 }
