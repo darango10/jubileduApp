@@ -43,6 +43,7 @@ insert into clientes (cedula, nombre, apellido, email, password, fecha, telefono
 insert into usuarios(username,password, enabled) values ('daniel','$2a$10$AcQtZ8yXpVxB/P3jRju58ONMJGD23uAH5ENjEMul/plUJlFcKWpee',1);
 insert into usuarios(username,password, enabled) values ('admin','$2a$10$JHn.6S9Xs4liWn8/T54nw.nPh.huSp0Dl/IXGN03wG.BQsAWyGfsi',1);
 
+
 insert into roles(nombre) values ('ROLE_USER');
 insert into roles(nombre) values ('ROLE_ADMIN');
 

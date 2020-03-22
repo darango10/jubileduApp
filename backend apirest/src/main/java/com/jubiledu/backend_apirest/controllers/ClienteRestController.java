@@ -4,7 +4,6 @@ import com.jubiledu.backend_apirest.models.entity.Cliente;
 import com.jubiledu.backend_apirest.models.entity.Role;
 import com.jubiledu.backend_apirest.models.entity.Usuario;
 import com.jubiledu.backend_apirest.models.services.ClienteService;
-import com.jubiledu.backend_apirest.models.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -64,6 +63,7 @@ public class ClienteRestController {
         Usuario usuarioNew = null;
         Map<String, Object> response = new HashMap<>();
 
+
         if (result.hasErrors()) {
 
 //            List<String> errors = new ArrayList<>();
@@ -84,6 +84,7 @@ public class ClienteRestController {
 
         try {
             clienteNew = clienteService.save(cliente);
+
         } catch (DataAccessException e) {
             response.put("mensaje", "Error al crear el cliente en la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
