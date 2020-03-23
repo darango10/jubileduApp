@@ -10,6 +10,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,12 @@ public class ClienteRestController {
 
     @Autowired
     private ClienteService clienteService;
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
 
     @Secured({"ROLE_ADMIN"})
@@ -61,7 +68,6 @@ public class ClienteRestController {
     @PostMapping("/clientes")
     public ResponseEntity<?> create(@Valid @RequestBody Cliente cliente, BindingResult result) {
         Cliente clienteNew = null;
-        Usuario usuarioNew = null;
         Map<String, Object> response = new HashMap<>();
 
 
@@ -94,9 +100,51 @@ public class ClienteRestController {
         }
         response.put("mensaje", "El cliente ha sido creado con exito.");
         response.put("cliente", clienteNew);
+        return new ResponseEntity<Map>(response, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/clientes/user")
+    public ResponseEntity<?> create(@Valid @RequestBody Usuario usuario, BindingResult result) {
+        Usuario usuarioNew = null;
+        Map<String, Object> response = new HashMap<>();
+
+
+        if (result.hasErrors()) {
+
+//            List<String> errors = new ArrayList<>();
+//            for (FieldError err :
+//                    result.getFieldErrors()) {
+//                errors.add("El campo " + err.getField() + " " + err.getDefaultMessage());
+//            }
+
+            List<String> errors = result.getFieldErrors()
+                    .stream()
+                    .map(err ->
+                            "El campo " + err.getField() + " " + err.getDefaultMessage())
+                    .collect(Collectors.toList());
+
+            response.put("errors", errors);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        try {
+            String password = usuario.getPassword();
+            String passwordBcrypt = passwordEncoder.encode(password);
+            usuario.setPassword(passwordBcrypt);
+            usuario.setEnabled(true);
+            usuarioNew = usuarioService.save(usuario);
+
+
+        } catch (DataAccessException e) {
+            response.put("mensaje", "Error al crear el cliente en la base de datos.");
+            response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        response.put("mensaje", "El cliente ha sido creado con exito.");
         response.put("usuario", usuarioNew);
         return new ResponseEntity<Map>(response, HttpStatus.CREATED);
     }
+
 
     @Secured({"ROLE_ADMIN"})
     @PutMapping("/clientes/registro/{id}")
