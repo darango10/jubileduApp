@@ -3,6 +3,7 @@ import {Cliente} from '../clientes/cliente';
 import {ClienteService} from '../clientes/cliente.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2';
+import {Usuario} from '../usuarios/usuario';
 
 @Component({
   selector: 'app-registro',
@@ -12,6 +13,7 @@ import swal from 'sweetalert2';
 export class RegistroComponent implements OnInit {
   titulo = 'Sign Up';
   cliente: Cliente = new Cliente();
+  usuario: Usuario = new Usuario();
   formRegistro: any;
   private errores: string[];
 
@@ -36,7 +38,7 @@ export class RegistroComponent implements OnInit {
 
   create() {
     this.clienteService.create(this.cliente).subscribe(json => {
-        this.router.navigate(['/clientes']);
+        this.router.navigate(['']);
         swal.fire('Usuario Registrado', `${json.cliente.nombre} registrado con exito`, 'success');
       },
       err => {

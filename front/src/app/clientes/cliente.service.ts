@@ -7,6 +7,7 @@ import {catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
 import {AuthService} from '../usuarios/auth.service';
+import {Usuario} from '../usuarios/usuario';
 
 @Injectable({
   providedIn: 'root'
