@@ -54,7 +54,8 @@
         <div class="form-group row mx-5">
           <label for="email" class="col-form-label col-sm-2">Email</label>
           <div class="col-sm-6">
-            <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" id="email"
+            <input type="email" class="form-control" [(ngModel)]="cliente.email" [(ngModel)]="usuario.username"
+                   name="email" id="email"
                    required="true" email #email="ngModel">
             <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
               <div *ngIf="email.errors.required">
@@ -70,7 +71,8 @@
         <div class="form-group row mx-5">
           <label for="password" class="col-form-label col-sm-2">Password</label>
           <div class="col-sm-6">
-            <input type="password" class="form-control" [(ngModel)]="cliente.password" name="password" id="password"
+            <input type="password" class="form-control" [(ngModel)]="cliente.password" [(ngModel)]="usuario.password"
+                   name="password" id="password"
                    required="true" minlength="6" #password="ngModel">
             <div class="alert alert-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
               <div *ngIf="password.errors.required">
@@ -156,7 +158,8 @@
 
         <div class="form-group row mx-5">
           <div class="col-sm-6">
-            <button class="btn btn-primary" role="button" (click)="create()" *ngIf="!cliente.id else elseBlock"
+            <button class="btn btn-primary" role="button" (click)="create();createUser()"
+                    *ngIf="!cliente.id else elseBlock"
                     [disabled]="!formRegistro.valid">
               Registrar
             </button>

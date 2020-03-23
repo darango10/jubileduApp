@@ -68,6 +68,21 @@ export class ClienteService {
     );
   }
 
+  createUser(usuario: Usuario): Observable<any> {
+    return this.http.post<any>(`${this.urlEndpoint}/user`, usuario, {headers: this.httpHeaders}).pipe(
+      catchError(e => {
+        if (e.status === 400) {
+          return throwError(e);
+        }
+
+
+        console.log(e.error.mensaje);
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
   getCliente(id): Observable<Cliente> {
     return this.http.get<Cliente>(`${this.urlEndpoint}/registro/${id}`, {headers: this.agregarAuthorizationHeader()}).pipe(
       catchError(e => {
