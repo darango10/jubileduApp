@@ -4,22 +4,22 @@ import com.jubiledu.backend_apirest.models.entity.Cliente;
 import com.jubiledu.backend_apirest.models.entity.Role;
 import com.jubiledu.backend_apirest.models.entity.Usuario;
 import com.jubiledu.backend_apirest.models.services.ClienteService;
+import com.jubiledu.backend_apirest.models.services.RoleService;
 import com.jubiledu.backend_apirest.models.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -32,6 +32,9 @@ public class ClienteRestController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -104,18 +107,15 @@ public class ClienteRestController {
     }
 
     @PostMapping("/clientes/user")
-    public ResponseEntity<?> create(@Valid @RequestBody Usuario usuario, BindingResult result) {
+    public ResponseEntity<?> createUser(@Valid @RequestBody Usuario usuario, BindingResult result) {
         Usuario usuarioNew = null;
         Map<String, Object> response = new HashMap<>();
-
+        List<Role> roles = new ArrayList<>();
+        Role rol = roleService.findByNombre("ROLE_USER");
+        roles.add(rol);
 
         if (result.hasErrors()) {
 
-//            List<String> errors = new ArrayList<>();
-//            for (FieldError err :
-//                    result.getFieldErrors()) {
-//                errors.add("El campo " + err.getField() + " " + err.getDefaultMessage());
-//            }
 
             List<String> errors = result.getFieldErrors()
                     .stream()
@@ -132,11 +132,13 @@ public class ClienteRestController {
             String passwordBcrypt = passwordEncoder.encode(password);
             usuario.setPassword(passwordBcrypt);
             usuario.setEnabled(true);
+            usuario.setRoles(roles);
+            System.out.println(roles);
             usuarioNew = usuarioService.save(usuario);
 
 
         } catch (DataAccessException e) {
-            response.put("mensaje", "Error al crear el cliente en la base de datos.");
+            response.put("mensaje", "Error al crear el usuario en la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }

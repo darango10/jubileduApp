@@ -4,6 +4,7 @@ import {ClienteService} from '../clientes/cliente.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import swal from 'sweetalert2';
 import {Usuario} from '../usuarios/usuario';
+import {Role} from '../usuarios/role';
 
 @Component({
   selector: 'app-registro',
@@ -14,6 +15,7 @@ export class RegistroComponent implements OnInit {
   titulo = 'Sign Up';
   cliente: Cliente = new Cliente();
   usuario: Usuario = new Usuario();
+  role: Role = new Role();
   formRegistro: any;
   private errores: string[];
 
@@ -46,14 +48,19 @@ export class RegistroComponent implements OnInit {
       }
     );
   }
+
   createUser() {
     this.clienteService.createUser(this.usuario).subscribe(json => {
-          // this.router.navigate(['']);
-          // swal.fire('Usuario Registrado', `${json.cliente.nombre} registrado con exito`, 'success');
-        },
-        err => {
-          this.errores = err.error.errors as string[];
-        }
+        // this.role.id = 1;
+        // this.role.nombre = ['ROLE_USER'];
+        // this.usuario.roles = this.role;
+        console.log(this.usuario);
+        // this.router.navigate(['']);
+        // swal.fire('Usuario Registrado', `${json.cliente.nombre} registrado con exito`, 'success');
+      },
+      err => {
+        this.errores = err.error.errors as string[];
+      }
     );
   }
 

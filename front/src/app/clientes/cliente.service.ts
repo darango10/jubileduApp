@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
 import {AuthService} from '../usuarios/auth.service';
 import {Usuario} from '../usuarios/usuario';
+import {Role} from '../usuarios/role';
 
 @Injectable({
   providedIn: 'root'
