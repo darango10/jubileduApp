@@ -14,6 +14,7 @@ import {AuthGuard} from './usuarios/guards/auth.guard';
 import {ClienteService} from './clientes/cliente.service';
 import {AuthService} from './usuarios/auth.service';
 import {RoleGuard} from './usuarios/guards/role.guard';
+import {EncuentranosComponent} from './encuentranos/encuentranos.component';
 
 // Array de Rutas
 const appRoutes: Routes = [
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'calculadora', component: CalculadoraComponent},
+  {path: 'encuentranos', component: EncuentranosComponent},
   {path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}},
   {path: 'clientes/registro/:id', component: RegistroComponent, canActivate: [AuthGuard, RoleGuard], data: {role: 'ROLE_ADMIN'}}
 ];

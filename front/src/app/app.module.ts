@@ -20,6 +20,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
 import {TokenInterceptor} from './usuarios/interceptors/token.interceptor';
 import {AuthInterceptor} from './usuarios/interceptors/auth.interceptor';
+import { EncuentranosComponent } from './encuentranos/encuentranos.component';
 
 registerLocaleData(localeES, 'es');
 
@@ -32,7 +33,8 @@ registerLocaleData(localeES, 'es');
     LoginComponent,
     RegistroComponent,
     CalculadoraComponent,
-    ClientesComponent
+    ClientesComponent,
+    EncuentranosComponent
   ],
   imports: [
     BrowserModule,
