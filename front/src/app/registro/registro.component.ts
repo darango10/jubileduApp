@@ -15,7 +15,6 @@ export class RegistroComponent implements OnInit {
   titulo = 'Sign Up';
   cliente: Cliente = new Cliente();
   usuario: Usuario = new Usuario();
-  role: Role = new Role();
   formRegistro: any;
   private errores: string[];
 

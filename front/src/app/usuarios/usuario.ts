@@ -4,5 +4,5 @@ export class Usuario {
   id: number;
   username: string;
   password: string;
-  roles: Role = [];
+  roles: string[] = [];
 }
